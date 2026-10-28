@@ -26,6 +26,15 @@ game code or data from EA is in the downloads below; the game reads everything f
      then downloads, checks and installs them. You can add or remove features later from *Disc & Features*.
 4. Press **Play Ball**.
 
+### Updates
+
+When a new version or a feature update is out, the launcher's start screen says so (from version 1.1; turn it off
+in *Settings > System*).
+
+- **New version:** press **Download**, get the file for your computer and replace the old app (Mac) or unzip the new
+  folder next to the old one (Windows, Linux). Your settings, saves and installed features carry over.
+- **Feature updates:** press **Update**. Only the features that changed are downloaded.
+
 ## Features
 
 **The game**
@@ -103,7 +112,12 @@ as the Releases page. `.github/workflows/build.yml` builds all three on GitHub.
 
 - **Does my European or Japanese disc work?** No. The game's code was recompiled from the USA disc only.
 - **The game doesn't find Vulkan.** It falls back to OpenGL by itself. Vulkan needs a driver that supports it.
-- **Where are my saves and settings?** Next to the program on Windows and Linux; on a Mac in
-  `~/Library/Application Support/MVP Baseball 2005 Recomp`.
+- **Where are my saves and settings?** Outside the program, so a new version can replace it:
+  - Mac: `~/Library/Application Support/MVP Baseball 2005 Recomp`
+  - Windows: `%LOCALAPPDATA%\MVP Baseball 2005 Recomp`
+  - Linux: `~/.local/share/mvp2005-recomp`
+
+  Version 1.0 on Windows and Linux kept them next to the program. A newer version unzipped next to the old folder
+  moves them over at its first start. To keep everything next to the program, put an empty file named `portable` there.
 
 MVP Baseball 2005 is a trademark of Electronic Arts. This is a fan project, not made or endorsed by EA or MLB.
