@@ -55,7 +55,7 @@ game code or data from EA is in the downloads below; the game reads everything f
 
 ## Build it yourself
 
-You need the source code ([mvp2005-recomp](https://github.com/alexsharkey32-cyber/mvp2005-recomp)) and your own disc. The recompiled C++ is made on your machine from the game program on
+You need the source code ([mvp-2005-recomp-source](https://github.com/alexsharkey32-cyber/mvp-2005-recomp-source)) and your own disc. The recompiled C++ is made on your machine from the game program on
 your disc, so nothing from the game has to be downloaded.
 
 ### 1. Tools
@@ -69,8 +69,8 @@ your disc, so nothing from the game has to be downloaded.
 ### 2. Source and your game program
 
 ```sh
-git clone https://github.com/alexsharkey32-cyber/mvp2005-recomp.git
-cd mvp2005-recomp
+git clone https://github.com/alexsharkey32-cyber/mvp-2005-recomp-source.git
+cd mvp-2005-recomp-source
 python3 tools/extract_iso.py "/path/to/MVP Baseball 2005 (USA).iso"   # copies SLUS_211.35 into game/
 python3 tools/recomp/ee_recomp.py                                     # writes the C++ into generated/ (a minute)
 ```
