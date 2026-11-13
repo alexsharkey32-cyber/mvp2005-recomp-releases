@@ -1,0 +1,41 @@
+# Makes the "features-2" release: the HD texture packs re-encoded as WebP (about a quarter of the download), from the
+# PNG packs in the "features" release, plus a manifest whose other features still download from "features".
+name: features-2
+on:
+  push:
+    branches: [features-2-build]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: features-2
+      OLD: https://github.com/${{ github.repository }}/releases/download/features/
+    steps:
+      - uses: actions/checkout@v4
+      - name: Room and tools
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost &
+          pip install --break-system-packages pillow numpy 2>/dev/null || pip install pillow numpy
+          wait; df -h /
+          W=$HOME/w; mkdir -p $W; echo "W=$W" >> $GITHUB_ENV
+          curl -sSL -o $W/old-manifest.json "${OLD}manifest.json"
+          gh release view $TAG --repo $GITHUB_REPOSITORY >/dev/null 2>&1 || gh release create $TAG --repo $GITHUB_REPOSITORY --latest=false \
+            --title "Features 2 (smaller HD packs)" --notes "The HD texture packs as WebP: the 4x pack about 11 GB instead of 44 GB, the 2x pack about 4 GB instead of 11 GB. Logos, lettering and jersey names are stored without loss. The game's launcher (1.4 and later) downloads from here; the other features still come from the features release."
+      - name: 4x pack
+        run: |
+          bash tools/convert.sh hd-4x $W
+          python3 tools/pack_hd.py hd-4x $W $GITHUB_REPOSITORY $TAG
+          rm -rf $W/build/hd-4x-webp
+      - name: 2x pack
+        run: |
+          bash tools/convert.sh hd-2x $W
+          python3 tools/pack_hd.py hd-2x $W $GITHUB_REPOSITORY $TAG
+      - name: Manifest
+        run: |
+          python3 tools/merge_manifest.py $W/old-manifest.json $W $OLD
+          gh release upload $TAG $W/manifest.json --repo $GITHUB_REPOSITORY --clobber
