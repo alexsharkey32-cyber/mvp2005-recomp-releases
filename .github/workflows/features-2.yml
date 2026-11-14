@@ -39,3 +39,4 @@ jobs:
         run: |
           python3 tools/merge_manifest.py $W/old-manifest.json $W $OLD
           gh release upload $TAG $W/manifest.json --repo $GITHUB_REPOSITORY --clobber
+          gh release delete-asset $TAG progress.txt --repo $GITHUB_REPOSITORY -y || true
