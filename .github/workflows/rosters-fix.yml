@@ -1,0 +1,18 @@
+# rosters-2026 with the corrected announcer names (tools/fix_rosters_part.py), into the features-2 release
+name: rosters-fix
+on:
+  push:
+    branches: [rosters-commentary-fix]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    env: { GH_TOKEN: '${{ github.token }}' }
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          W=$HOME/w; mkdir -p $W
+          curl -sSL --retry 5 -o $W/rosters-2026.tar https://github.com/${GITHUB_REPOSITORY}/releases/download/features/rosters-2026.tar
+          python3 tools/fix_rosters_part.py $W $GITHUB_REPOSITORY features-2
