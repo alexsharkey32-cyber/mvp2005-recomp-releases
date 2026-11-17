@@ -1,0 +1,22 @@
+# the history-era packs with corrected announcer names (tools/fix_part.py), into the features-2 release
+name: eras-fix
+on:
+  push:
+    branches: [eras-commentary-fix]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: features-2-manifest }
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env: { GH_TOKEN: '${{ github.token }}' }
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          W=$HOME/w; mkdir -p $W
+          for y in 1910 1927 1941 1951 1961 1969 1977 1986 1993 1999 2004 2012 2019; do
+            curl -sSL --retry 5 -o $W/era-$y.tar https://github.com/${GITHUB_REPOSITORY}/releases/download/features/era-$y.tar
+            python3 tools/fix_part.py era-$y mods/pack-$y/commentary $W $GITHUB_REPOSITORY features-2
+          done
