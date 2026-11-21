@@ -19,21 +19,14 @@ game code or data from EA is in the downloads below; the game reads everything f
 2. Unzip it and start **MVP Baseball 2005**.
    - Mac: the first time, right-click the app and choose **Open** (it isn't signed by Apple).
    - Windows: unzip somewhere you can write to (not Program Files). If SmartScreen warns, choose **More info > Run anyway**.
-3. **Setup** opens on the first start:
-   - **Your disc:** choose your `.iso` or drag it onto the window. The game checks it is the USA version and tells
-     you exactly what's wrong if it isn't. `.chd` and `.cso` images must be turned back into `.iso` first.
-   - **Features:** tick what you want. Setup shows each one's size, the free space on your drive and a preview,
-     then downloads, checks and installs them. You can add or remove features later from *Disc & Features*.
-4. Press **Play Ball**.
+3. Choose your USA disc image or drag the `.iso` onto the setup window. Convert `.chd` or `.cso` images back to `.iso` first. Once it is verified, select **Play now** to start with the original 2005 rosters. To install rosters, portraits, or HD textures, select **Optional packs** to preview each pack and check its download size and available disk space. You can also add them later from **Disc & Features**.
 
 ### Updates
 
-When a new version or a feature update is out, the launcher's start screen says so (from version 1.1; turn it off
-in *Settings > System*).
-
-- **New version:** press **Download**, get the file for your computer and replace the old app (Mac) or unzip the new
-  folder next to the old one (Windows, Linux). Your settings, saves and installed features carry over.
-- **Feature updates:** press **Update**. Only the features that changed are downloaded.
+- **Coming from v1.4.1 or earlier?** Download and extract [v1.4.2](../../releases/tag/v1.4.2) or a newer release once. Start the new app to get the in-launcher updater.
+- **On v1.4.2 or newer**, select **Install** when the launcher offers a new version. It picks the package for your system and verifies the download. Select **Restart** when ready. Your original v1.4.2 shortcut opens completed updates on normal launches. Saves, settings and installed packs stay in place.
+- **Manual checks:** open **Settings → System → Check / install update**. Use **Check preview releases** to include pre-releases for that check.
+- **Feature updates:** select **Update** on the feature notice to download the packs that changed.
 
 ## Features
 
