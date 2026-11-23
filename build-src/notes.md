@@ -1,12 +1,8 @@
-> **Mac comes at the beginning of next month.** The Mac package will be added to this page at the start of December. The Android preview is available now: see below.
+> **Mac comes at the beginning of next month.** The Mac package will be added to this page at the start of December.
 
 ## What's new
 
-- **Android preview (for testers).** Download **MVP2005-Android-arm64-v8a.apk** under **Assets** on your phone and open it to install. Android will ask you to allow installs from your browser or file manager. It works on 64-bit phones and tablets running Android 9 or newer.
-  - You need your own uncompressed USA disc image (SLUS-21135, an .iso). Copy it to the phone, then tap **Choose disc image** and pick it. You can also open the .iso straight from a file manager.
-  - It works with a controller or with the on-screen buttons and stick.
-  - This is an early preview, so please report how it runs on your device.
-  - If you installed the 0.2 alpha, uninstall it once first, because this build uses a new signing key.
+- **Android player in testing.** The Android version is being tested by a small group. It will be published here after that.
 - **Widescreen fix from v1.4.3.** Menus and the scorebug at 16:9 look as they did before v1.4.2.
 
 ## Fixes

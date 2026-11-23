@@ -1,5 +1,5 @@
 # Builds the Android preview APK from an encrypted copy of the private source (build-src/src.tar.xz.enc) and
-# attaches it to the release named in build-src/release.txt. The key is the MVP_SRC_KEY Actions secret.
+# puts it in the android-testers draft release (not public). The key is the MVP_SRC_KEY Actions secret.
 name: android-apk
 on:
   push:
@@ -33,9 +33,16 @@ jobs:
           for lib in libSDL2.so libgame.so libc++_shared.so; do unzip -Z1 "$apk" | grep -Fx "lib/arm64-v8a/$lib"; done
           cp "$apk" "$RUNNER_TEMP/MVP2005-Android-arm64-v8a.apk"
           ls -l "$RUNNER_TEMP"/*.apk
-      - name: Attach it to the release
+      # Tester builds go to a draft release, which only people with access to this repository can see.
+      - name: Put it in the private tester draft
         run: |
-          tag=$(cat build-src/release.txt)
+          tag=android-testers
+          if ! gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$tag" --repo "$GITHUB_REPOSITORY" --draft --title "Android tester build" --notes "Private: share the APK only with testers."
+          fi
           gh release upload "$tag" "$RUNNER_TEMP/MVP2005-Android-arm64-v8a.apk" --repo "$GITHUB_REPOSITORY" --clobber
-          if [ -f build-src/notes.md ]; then gh release edit "$tag" --repo "$GITHUB_REPOSITORY" --notes-file build-src/notes.md; fi
-          gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[]|[.name,.size,.digest]|@tsv'
+      - name: Keep the APK off the public release
+        run: |
+          gh release delete-asset v1.5 MVP2005-Android-arm64-v8a.apk --repo "$GITHUB_REPOSITORY" -y || true
+          gh release edit v1.5 --repo "$GITHUB_REPOSITORY" --notes-file build-src/notes.md
+          gh release view v1.5 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name'
