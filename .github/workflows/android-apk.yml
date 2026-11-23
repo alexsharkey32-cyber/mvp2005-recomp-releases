@@ -1,0 +1,41 @@
+# Builds the Android preview APK from an encrypted copy of the private source (build-src/src.tar.xz.enc) and
+# attaches it to the release named in build-src/release.txt. The key is the MVP_SRC_KEY Actions secret.
+name: android-apk
+on:
+  push:
+    branches: [android-apk]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env: { GH_TOKEN: '${{ github.token }}' }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack the source
+        env: { KEY: '${{ secrets.MVP_SRC_KEY }}' }
+        run: |
+          test -n "$KEY" || { echo "::error::Add the MVP_SRC_KEY secret (Settings > Secrets and variables > Actions)"; exit 1; }
+          mkdir -p "$RUNNER_TEMP/src"
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -pass env:KEY -in build-src/src.tar.xz.enc | xz -d | tar x -C "$RUNNER_TEMP/src"
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.9' }
+      - name: Build the arm64 APK
+        working-directory: ${{ runner.temp }}/src
+        run: |
+          gradle -p android -PmvpAbi=arm64-v8a --max-workers=4 assembleDebug
+          apk=$(find android/build/outputs/apk/debug -name '*.apk')
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$apk"
+          for lib in libSDL2.so libgame.so libc++_shared.so; do unzip -Z1 "$apk" | grep -Fx "lib/arm64-v8a/$lib"; done
+          cp "$apk" "$RUNNER_TEMP/MVP2005-Android-arm64-v8a.apk"
+          ls -l "$RUNNER_TEMP"/*.apk
+      - name: Attach it to the release
+        run: |
+          tag=$(cat build-src/release.txt)
+          gh release upload "$tag" "$RUNNER_TEMP/MVP2005-Android-arm64-v8a.apk" --repo "$GITHUB_REPOSITORY" --clobber
+          if [ -f build-src/notes.md ]; then gh release edit "$tag" --repo "$GITHUB_REPOSITORY" --notes-file build-src/notes.md; fi
+          gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[]|[.name,.size,.digest]|@tsv'
