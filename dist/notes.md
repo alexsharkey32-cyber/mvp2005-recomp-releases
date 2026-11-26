@@ -1,22 +1,20 @@
-> **Mac and Android builds come at the beginning of next month.** This release has Windows and Linux only for now. The Mac package and the first Android preview (arm64 phones and tablets) will be added to this page at the start of December.
+> **Mac comes at the beginning of next month.** The Mac package will be added at the start of December.
 
-## What's new
+## Smoother play
 
-- **Android preview (coming in early December).** The Android player is finished and passes its tests. You'll be able to choose your own USA disc image from your phone's storage or open it from a file manager. It works with a controller or on-screen buttons and stick. If you installed the 0.2 alpha, you'll need to uninstall it once, because the new build uses a new signing key.
-- **Widescreen fix from v1.4.3.** Menus and the scorebug at 16:9 look as they did before v1.4.2.
+- **No more hitches from disc reads.** When reading the disc image took a moment (a hard drive seeking or waking up, antivirus scanning the file), the whole game froze until it was done – about a third of a second, several times an inning, which showed up as drops to 40–50 fps. Disc reads now happen in the background and the game keeps running, as it did on the PS2.
+- **Fewer disc seeks.** The game streams crowd noise, music and commentary in small pieces from different parts of the disc. Each piece used to be its own read (a seek on a hard drive); the game now reads ahead 256 KB at a time, and keeps era/stadium pack files open instead of reopening them for every read.
+- **The log explains slow frames.** If a frame takes too long, `mvp2005.log` now says what it waited for. Handy when reporting a stutter.
 
-## Fixes
+## Controllers on Linux (Steam Deck, Steam Machine)
 
-- **Smaller updates on disk.** After an update, older installed versions and leftover partial downloads are removed. Previously every earlier version was kept, about 60 MB each.
-- **Textures settings.** The page now counts your installed HD pack. In the launcher it used to say "none".
-- **Audio settings.** In the launcher, Output no longer says "no audio device" while the menu music is playing.
-- **Setup screen.** It no longer says Play now starts the original 2005 game when you have packs installed.
-- **Mouse wheel.** Scrolling in launcher lists moves one row per notch. A fast scroll used to move only one row.
-- **Era cards.** The draft line now reads "Future stars in your dynasty's drafts". The years are when those players join your dynasty's draft classes, not their real draft years.
+- **Every connected controller works.** Pads that appear after the game starts (Steam Input creates its virtual controller around launch) are picked up, unplugging one no longer drops the others, and unknown pads get a standard layout. Steam's raw controller devices are left to Steam, so presses aren't doubled.
+- **Uses your system's SDL when it is newer.** The Linux package carries an older SDL so it runs everywhere. If your system has a newer one (SteamOS and current distributions do), the game now uses it: it knows the newest controllers and works with Steam's controller settings. The log names the SDL in use; set `MVP_BUNDLED_SDL=1` to keep the packaged one.
+- **Controller input in Steam game mode** keeps working even if the window is reported as unfocused.
 
 ## Updating
 
-- **From v1.4.2 or later:** choose **Install** in the launcher when v1.5 appears, then **Restart**.
+- **From v1.4.2 or later:** choose **Install** in the launcher when v1.5.2 appears, then **Restart**.
 - **From v1.4.1 or earlier:** download the package for your system under **Assets** and extract it.
 
 Your disc, saves, settings and installed packs stay where they are.
