@@ -1,1 +1,1 @@
-Speed and freeze fixes (Mac in early December)
+Faster, smoother, Linux controllers
