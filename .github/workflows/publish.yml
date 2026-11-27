@@ -14,5 +14,5 @@ jobs:
       - run: |
           tag=${GITHUB_REF_NAME#publish-}
           title="MVP Baseball 2005 Recomp $tag — $(cat dist/title.txt)"
-          gh release create "$tag" dist/*.zip dist/*.tar.gz --repo "$GITHUB_REPOSITORY" --target main --title "$title" --notes-file dist/notes.md --latest
+          gh release create "$tag" dist/*.zip dist/*.tar.gz dist/*.apk --repo "$GITHUB_REPOSITORY" --target main --title "$title" --notes-file dist/notes.md --latest
           gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[]|[.name,.size,.digest]|@tsv'

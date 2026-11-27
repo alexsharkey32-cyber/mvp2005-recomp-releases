@@ -1,1 +1,1 @@
-Sharper text and icons, Android crash fixes
+Rosters apply without restarting, Android features and crash fixes
