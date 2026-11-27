@@ -1,0 +1,60 @@
+# Windows and Linux test builds from the encrypted private source, into the desktop-testers draft (not public).
+name: desktop-test
+on:
+  push:
+    branches: [desktop-test]
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  FEATURES_URL: https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features-2/manifest.json https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/manifest.json
+jobs:
+  windows:
+    runs-on: windows-latest
+    defaults: { run: { shell: msys2 {0} } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-SDL2 mingw-w64-ucrt-x86_64-vulkan-headers mingw-w64-ucrt-x86_64-shaderc
+            mingw-w64-ucrt-x86_64-python mingw-w64-ucrt-x86_64-ntldd zip xz
+      - name: Unpack and build
+        env: { KEY: '${{ secrets.MVP_SRC_KEY }}' }
+        run: |
+          mkdir src && openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -pass env:KEY -in build-src/src.tar.xz.enc | xz -d | tar x -C src
+          cd src
+          cmake -S . -B out -G Ninja -DCMAKE_BUILD_TYPE=Release -DMVP_FEATURES_URL="$FEATURES_URL" > cfg.log 2>&1 || { tail -25 cfg.log; exit 1; }
+          cmake --build out --parallel -- -k 0 > build.log 2>&1 || { grep -E "error|undefined reference" build.log | head -40; tail -8 build.log; exit 1; }
+          bash tools/release/package_windows.sh out/mvp2005.exe ../dist
+      - uses: actions/upload-artifact@v4
+        with: { name: windows, path: dist/*.zip }
+  linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y libsdl2-dev libvulkan-dev glslang-tools ninja-build patchelf
+      - name: Unpack and build
+        env: { KEY: '${{ secrets.MVP_SRC_KEY }}' }
+        run: |
+          mkdir src && openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -pass env:KEY -in build-src/src.tar.xz.enc | xz -d | tar x -C src
+          cd src
+          cmake -S . -B out -G Ninja -DCMAKE_BUILD_TYPE=Release -DMVP_FEATURES_URL="$FEATURES_URL" > cfg.log 2>&1 || { tail -25 cfg.log; exit 1; }
+          cmake --build out --parallel -- -k 0 > build.log 2>&1 || { grep -E "error|undefined reference" build.log | head -40; tail -8 build.log; exit 1; }
+          bash tools/release/package_linux.sh out/mvp2005 ../dist
+      - uses: actions/upload-artifact@v4
+        with: { name: linux, path: dist/*.tar.gz }
+  draft:
+    needs: [windows, linux]
+    runs-on: ubuntu-latest
+    env: { GH_TOKEN: '${{ github.token }}' }
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: dist, merge-multiple: true }
+      - run: |
+          tag=desktop-testers
+          gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create "$tag" --repo "$GITHUB_REPOSITORY" --draft --title "Desktop test build" --notes "Private test builds."
+          gh release upload "$tag" dist/* --repo "$GITHUB_REPOSITORY" --clobber
