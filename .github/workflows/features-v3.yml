@@ -1,0 +1,28 @@
+# Today's rosters v3 (faces from every player's headshot) and Player portraits v2, into the features-2 release
+name: features-v3
+on:
+  push:
+    branches: [features-v3]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env: { GH_TOKEN: '${{ github.token }}' }
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cd dist
+          for t in rosters-2026-v3.tar portraits-2026-v2.tar; do cat $t.split.* > $t; rm $t.split.*; done
+          python3 - <<'P'
+          import json, hashlib, os
+          m = json.load(open('manifest.json'))
+          for f in m['features']:
+              for p in f.get('parts', []):
+                  if os.path.exists(p['file']):
+                      assert os.path.getsize(p['file']) == p['size'], p['file']
+                      assert hashlib.sha256(open(p['file'], 'rb').read()).hexdigest() == p['sha256'], p['file']
+                      print('ok', p['file'])
+          P
+          gh release upload features-2 rosters-2026-v3.tar portraits-2026-v2.tar --repo "$GITHUB_REPOSITORY" --clobber
+          gh release upload features-2 manifest.json --repo "$GITHUB_REPOSITORY" --clobber

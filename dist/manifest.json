@@ -1,0 +1,605 @@
+{
+ "format": 1,
+ "name": "MVP Baseball 2005 Recomp features",
+ "base_url": "",
+ "features": [
+  {
+   "id": "rosters-2026",
+   "name": "Today's rosters (2026)",
+   "group": "Today's game",
+   "default": true,
+   "description": "Every club's current players, with ratings worked out from their real statistics, today's managers and the 2026 schedule. The commentators say the surnames of about 850 new players with their own recordings.",
+   "paths": [
+    "mods/rosters-2026",
+    "mods/commentary-2026"
+   ],
+   "on_install": {
+    "rosters": 1,
+    "commentary": 1
+   },
+   "on_remove": {
+    "rosters": 0
+   },
+   "version": "3",
+   "install_size": 157382897,
+   "files": 2292,
+   "parts": [
+    {
+     "file": "rosters-2026-v3.tar",
+     "size": 159016960,
+     "sha256": "412fc4646f1eab6027016bea729ebbda6f1001145684e4bf736c95ab8c7621fe",
+     "files": 2292
+    }
+   ]
+  },
+  {
+   "id": "portraits-2026",
+   "name": "Player portraits",
+   "group": "Today's game",
+   "default": true,
+   "requires": [
+    "rosters-2026"
+   ],
+   "description": "A portrait for every player on today's rosters, rendered from his own face and uniform, in place of the game's generic heads.",
+   "paths": [
+    "mods/portraits-2026"
+   ],
+   "on_install": {
+    "portraits": 1
+   },
+   "on_remove": {
+    "portraits": 0
+   },
+   "previews": [
+    {
+     "file": "portraits.png",
+     "caption": "Portraits made for the 2026 rosters",
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/preview-portraits.png"
+    }
+   ],
+   "version": "2",
+   "install_size": 148074550,
+   "files": 1319,
+   "parts": [
+    {
+     "file": "portraits-2026-v2.tar",
+     "size": 149084160,
+     "sha256": "54bf6a87bcce85ba3914f785393b6e046c79d5cfd1d7934e4451349c3b432b73",
+     "files": 1319,
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features-2/portraits-2026-v2.tar"
+    }
+   ]
+  },
+  {
+   "id": "uniforms-2026",
+   "name": "Today's uniforms",
+   "group": "Today's game",
+   "default": true,
+   "description": "Each club's home and road uniforms become the closest match to what it wears today, from the game's own wardrobe: throwbacks that came back, new colours and jerseys that fit the club's name.",
+   "paths": [
+    "mods/uniforms-2026"
+   ],
+   "on_install": {
+    "uniforms": 1
+   },
+   "on_remove": {
+    "uniforms": 0
+   },
+   "version": "1",
+   "install_size": 11021969,
+   "files": 84,
+   "parts": [
+    {
+     "file": "uniforms-2026.tar",
+     "size": 11089920,
+     "sha256": "8050c443608d2de89a2d79715641f17fcc8113f35e92117fd26bd5a8f0696118",
+     "files": 84,
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/uniforms-2026.tar"
+    }
+   ]
+  },
+  {
+   "id": "stadiums-2026",
+   "name": "Today's ballparks",
+   "group": "Today's game",
+   "default": true,
+   "description": "Today's park names, and outfields reshaped to today's fence distances where the fences moved or the club moved to a new park.",
+   "paths": [
+    "mods/stadiums-2026"
+   ],
+   "on_install": {
+    "stadiums": 1
+   },
+   "on_remove": {
+    "stadiums": 0
+   },
+   "version": "1",
+   "install_size": 10289257,
+   "files": 337,
+   "parts": [
+    {
+     "file": "stadiums-2026.tar",
+     "size": 10547200,
+     "sha256": "aef8709c26e5eca487a48675d0c5bdfc50bca5cb6ee37a1e8afd3d1d253533ca",
+     "files": 337,
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/stadiums-2026.tar"
+    }
+   ]
+  },
+  {
+   "id": "ai-2026",
+   "name": "2026 rules for CPU play",
+   "group": "Today's game",
+   "default": true,
+   "description": "Computer-controlled clubs play by today's rules: no extreme shifts, a quicker pace (pitch clock), more steals with the bigger bases, and the universal DH.",
+   "paths": [
+    "mods/ai-2026"
+   ],
+   "on_install": {
+    "ai": 1
+   },
+   "on_remove": {
+    "ai": 0
+   },
+   "version": "1",
+   "install_size": 2880898,
+   "files": 2,
+   "parts": [
+    {
+     "file": "ai-2026.tar",
+     "size": 2887680,
+     "sha256": "0162b7ea18547dcae4de5269d17c5a5daa37d88023f89113a00352540b291c1d",
+     "files": 2,
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/ai-2026.tar"
+    }
+   ]
+  },
+  {
+   "id": "heads",
+   "name": "Varied head shapes",
+   "group": "Today's game",
+   "default": true,
+   "description": "The game's 15 generic heads each get their own jaw, cheekbones and chin, so created and generated players don't all look alike.",
+   "paths": [
+    "mods/heads"
+   ],
+   "on_install": {
+    "head_shapes": 1
+   },
+   "on_remove": {
+    "head_shapes": 0
+   },
+   "version": "1",
+   "install_size": 1451672,
+   "files": 45,
+   "parts": [
+    {
+     "file": "heads.tar",
+     "size": 1495040,
+     "sha256": "2ada489a4ae6c6320d82b9283bfc89a3e71dc685c717107713199efa3a7fd3b7",
+     "files": 45,
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/heads.tar"
+    }
+   ]
+  },
+  {
+   "id": "era-1910",
+   "name": "MLB 1910",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Pittsburgh Pirates are the champions of 1909. Last year Ty Cobb hit 9 home runs and George Mullin won 29. In the drafts of the next ten years: Burleigh Grimes (1914), Waite Hoyt (1917), Babe Ruth (1913), Earl Whitehill (1920).",
+   "paths": [
+    "mods/pack-1910"
+   ],
+   "era": true,
+   "season": 1910,
+   "version": "2",
+   "install_size": 511923301,
+   "files": 4780,
+   "parts": [
+    {
+     "file": "era-1910.tar",
+     "size": 515440640,
+     "sha256": "8a7ac158276adea46ec9965e74baa74763eb50f719685e7be15ac9c750b1d891",
+     "files": 4780
+    }
+   ]
+  },
+  {
+   "id": "era-1927",
+   "name": "MLB 1927",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The St. Louis Cardinals are the champions of 1926. Last year Babe Ruth hit 47 home runs and George Uhle won 27. In the drafts of the next ten years: Bob Feller (1935), Dutch Leonard (1930), Bill Lee (1930), Dizzy Trout (1936).",
+   "paths": [
+    "mods/pack-1927"
+   ],
+   "era": true,
+   "season": 1927,
+   "version": "2",
+   "install_size": 530116390,
+   "files": 4781,
+   "parts": [
+    {
+     "file": "era-1927.tar",
+     "size": 533616640,
+     "sha256": "49893bf4baa2e68f61fa1b73176f588744c7762ae750106a7572b66b8338423b",
+     "files": 4781
+    }
+   ]
+  },
+  {
+   "id": "era-1941",
+   "name": "MLB 1941",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Cincinnati Reds are the champions of 1940. Last year Johnny Mize hit 43 home runs and Bob Feller won 27. In the drafts of the next ten years: Robin Roberts (1947), Bob Friend (1950), Curt Simmons (1946), Billy Pierce (1944).",
+   "paths": [
+    "mods/pack-1941"
+   ],
+   "era": true,
+   "season": 1941,
+   "version": "2",
+   "install_size": 540951345,
+   "files": 4786,
+   "parts": [
+    {
+     "file": "era-1941.tar",
+     "size": 544491520,
+     "sha256": "92555856730774467d11b2943c3e72c7a6f646c250447fa40170d02da80d6c30",
+     "files": 4786
+    }
+   ]
+  },
+  {
+   "id": "era-1951",
+   "name": "MLB 1951",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The New York Yankees are the champions of 1950. Last year Ralph Kiner hit 47 home runs and Bob Lemon won 23. In the drafts of the next ten years: Phil Niekro (1960), Gaylord Perry (1959), Jim Kaat (1958), Bob Gibson (1956).",
+   "paths": [
+    "mods/pack-1951"
+   ],
+   "era": true,
+   "season": 1951,
+   "version": "2",
+   "install_size": 519711129,
+   "files": 4778,
+   "parts": [
+    {
+     "file": "era-1951.tar",
+     "size": 523212800,
+     "sha256": "8e1486406e6957116f7c7b08afdeb1caee221c97450afec1dce2aa035dcdbf9d",
+     "files": 4778
+    }
+   ]
+  },
+  {
+   "id": "era-1961",
+   "name": "MLB 1961",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Pittsburgh Pirates are the champions of 1960. New this year: Los Angeles Angels and Washington Senators. Last year Ernie Banks hit 41 home runs and Ernie Broglio won 21. In the drafts of the next ten years: Steve Carlton (1964), Don Sutton (1965), Nolan Ryan (1965), Tom Seaver (1965).",
+   "paths": [
+    "mods/pack-1961"
+   ],
+   "era": true,
+   "season": 1961,
+   "version": "2",
+   "install_size": 511836612,
+   "files": 4744,
+   "parts": [
+    {
+     "file": "era-1961.tar",
+     "size": 515338240,
+     "sha256": "c40cceabb8488f178520e14c28472c0abdfa93144643a310871e7d8114a48d6f",
+     "files": 4744
+    }
+   ]
+  },
+  {
+   "id": "era-1969",
+   "name": "MLB 1969",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Detroit Tigers are the champions of 1968. New this year: Kansas City Royals, Montreal Expos, San Diego Padres, Seattle Pilots. Last year Frank Howard hit 44 home runs and Denny McLain won 31. In the drafts of the next ten years: Frank Tanana (1972), Dennis Martinez (1975), Jack Morris (1976), Rickey Henderson (1978).",
+   "paths": [
+    "mods/pack-1969"
+   ],
+   "era": true,
+   "season": 1969,
+   "version": "2",
+   "install_size": 517539726,
+   "files": 4707,
+   "parts": [
+    {
+     "file": "era-1969.tar",
+     "size": 521000960,
+     "sha256": "66a766ac7c0a2f39b3051e1196648f0f91f9a02cacc199c37cda10b1e8b2ccf7",
+     "files": 4707
+    }
+   ]
+  },
+  {
+   "id": "era-1977",
+   "name": "MLB 1977",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Cincinnati Reds are the champions of 1976. New this year: Seattle Mariners and Toronto Blue Jays. Last year Mike Schmidt hit 38 home runs and Randy Jones won 22. In the drafts of the next ten years: Greg Maddux (1985), Roger Clemens (1983), Tom Glavine (1986), Randy Johnson (1984).",
+   "paths": [
+    "mods/pack-1977"
+   ],
+   "era": true,
+   "season": 1977,
+   "version": "2",
+   "install_size": 681315221,
+   "files": 5465,
+   "parts": [
+    {
+     "file": "era-1977.tar",
+     "size": 685363200,
+     "sha256": "92b042b0ffc8c40b9099e2496f73d20edf6ba505028bfd1bc279c52bb787d30c",
+     "files": 5465
+    }
+   ]
+  },
+  {
+   "id": "era-1986",
+   "name": "MLB 1986",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Kansas City Royals are the champions of 1985. Last year Darrell Evans hit 40 home runs and Dwight Gooden won 24. In the drafts of the next ten years: Mike Mussina (1989), Bartolo Colon (1994), Livan Hernandez (1995), Derek Jeter (1994).",
+   "paths": [
+    "mods/pack-1986"
+   ],
+   "era": true,
+   "season": 1986,
+   "version": "2",
+   "install_size": 517736914,
+   "files": 4694,
+   "parts": [
+    {
+     "file": "era-1986.tar",
+     "size": 521185280,
+     "sha256": "45ab93582de63f607379bcb14cea47fdf3aa53fa1eac01d2c49eb7327e3d7b84",
+     "files": 4694
+    }
+   ]
+  },
+  {
+   "id": "era-1993",
+   "name": "MLB 1993",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Toronto Blue Jays are the champions of 1992. New this year: Colorado Rockies and Florida Marlins. Last year Juan Gonzalez hit 43 home runs and Kevin Brown won 21. In the drafts of the next ten years: CC Sabathia (2000), Albert Pujols (2000), Zack Greinke (2003), Mark Buehrle (1999).",
+   "paths": [
+    "mods/pack-1993"
+   ],
+   "era": true,
+   "season": 1993,
+   "version": "2",
+   "install_size": 481492927,
+   "files": 4358,
+   "parts": [
+    {
+     "file": "era-1993.tar",
+     "size": 484700160,
+     "sha256": "30b58c7f90936ae7aa677c062f9678cc99b97b4ebe30c294500aba8571af1b66",
+     "files": 4358
+    }
+   ]
+  },
+  {
+   "id": "era-1999",
+   "name": "MLB 1999",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The New York Yankees are the champions of 1998. Last year Mark McGwire hit 70 home runs and Roger Clemens won 20. In the drafts of the next ten years: Justin Verlander (2004), Zack Greinke (2003), Miguel Cabrera (2002), Max Scherzer (2005).",
+   "paths": [
+    "mods/pack-1999"
+   ],
+   "era": true,
+   "season": 1999,
+   "version": "2",
+   "install_size": 384868636,
+   "files": 3561,
+   "parts": [
+    {
+     "file": "era-1999.tar",
+     "size": 387481600,
+     "sha256": "be5957605b73a2f0170ca37de49973987bc7f88457e9666944ea0bd686a0fa9c",
+     "files": 3561
+    }
+   ]
+  },
+  {
+   "id": "era-2004",
+   "name": "MLB 2004",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Florida Marlins are the champions of 2003. Last year Alex Rodriguez hit 47 home runs and Roy Halladay won 22. In the drafts of the next ten years: Clayton Kershaw (2007), Andrew McCutchen (2007), Freddie Freeman (2009), Carlos Santana (2007).",
+   "paths": [
+    "mods/pack-2004"
+   ],
+   "era": true,
+   "season": 2004,
+   "version": "2",
+   "install_size": 270565975,
+   "files": 2804,
+   "parts": [
+    {
+     "file": "era-2004.tar",
+     "size": 272599040,
+     "sha256": "c4bfdd64f72973a05830a5939272218835ccb880ab032405a8cff8dccb8a04bc",
+     "files": 2804
+    }
+   ]
+  },
+  {
+   "id": "era-2012",
+   "name": "MLB 2012",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The St. Louis Cardinals are the champions of 2011. Last year Jose Bautista hit 43 home runs and Justin Verlander won 24. In the drafts of the next ten years: Shohei Ohtani (2015), Luis Castillo (2013), Dansby Swanson (2015), Aaron Judge (2013).",
+   "paths": [
+    "mods/pack-2012"
+   ],
+   "era": true,
+   "season": 2012,
+   "version": "2",
+   "install_size": 416057707,
+   "files": 4010,
+   "parts": [
+    {
+     "file": "era-2012.tar",
+     "size": 418979840,
+     "sha256": "c4b208cc30a42bbeb31e00dabe38a4a4d77169e2d127ccf1c87305ca15ae0121",
+     "files": 4010
+    }
+   ]
+  },
+  {
+   "id": "era-2019",
+   "name": "MLB 2019",
+   "group": "Seasons from history",
+   "default": false,
+   "description": "The Boston Red Sox are the champions of 2018. Last year Khris Davis hit 48 home runs and Blake Snell won 21. In the drafts of the next ten years: Elly De La Cruz (2022), Masyn Winn (2022), Nolan Schanuel (2022), Gavin Williams (2020).",
+   "paths": [
+    "mods/pack-2019"
+   ],
+   "era": true,
+   "season": 2019,
+   "version": "2",
+   "install_size": 472738729,
+   "files": 4502,
+   "parts": [
+    {
+     "file": "era-2019.tar",
+     "size": 476047360,
+     "sha256": "201995010be716bba5230fe8606d7486f93b8df48ef9c655a9a60d7693552158",
+     "files": 4502
+    }
+   ]
+  },
+  {
+   "id": "hd-4x",
+   "name": "HD texture pack (4x)",
+   "group": "Graphics",
+   "default": false,
+   "excludes": [
+    "hd-2x"
+   ],
+   "description": "Every texture on the disc redrawn at four times its resolution with a Real-ESRGAN upscale and repairs for colour, grain, seams and lettering: uniforms, faces, ballparks, crowds, logos and menus. Best at internal resolution 3x or 4x.",
+   "paths": [
+    "textures/hd/.pack-4x"
+   ],
+   "remove": [
+    "textures/hd"
+   ],
+   "on_install": {
+    "tex_replace": 1
+   },
+   "previews": [
+    {
+     "file": "hd_before.png",
+     "after": "hd_after.png",
+     "caption": "Original textures (left) and the 4x pack (right)",
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/preview-hd_before.png",
+     "after_url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/preview-hd_after.png"
+    }
+   ],
+   "version": "1",
+   "install_size": 10818997060,
+   "files": 306620,
+   "parts": [
+    {
+     "file": "hd-4x.part1.tar",
+     "size": 1865635840,
+     "sha256": "99fbb9f7b70c543097e46dc5ad101a863715251f0337f1264ea648763b71b273",
+     "files": 44707
+    },
+    {
+     "file": "hd-4x.part2.tar",
+     "size": 1862328320,
+     "sha256": "66ad7723376ef160fe5052dbb4c77a951868acc62b755ae976b2b7131ab7b0b6",
+     "files": 48952
+    },
+    {
+     "file": "hd-4x.part3.tar",
+     "size": 1862348800,
+     "sha256": "16e1c76ea78c7782ee9b460ce90e2242a1b6b6f55b6ee0b0dd766af83e259ff1",
+     "files": 48930
+    },
+    {
+     "file": "hd-4x.part4.tar",
+     "size": 1862502400,
+     "sha256": "1ccee822910cb7095804ad50eba08fe9bd14ae46f3884953e19fb45318f22e9d",
+     "files": 48797
+    },
+    {
+     "file": "hd-4x.part5.tar",
+     "size": 1862492160,
+     "sha256": "4744a004e5ce89f7208778856611fa3b93928f5f5420be1c213212966cfa140e",
+     "files": 48809
+    },
+    {
+     "file": "hd-4x.part6.tar",
+     "size": 1738956800,
+     "sha256": "5c6ad1c86d766300da439ba9e1cb7decb274968779bbc478c5a3bc1519394138",
+     "files": 66425
+    }
+   ]
+  },
+  {
+   "id": "hd-2x",
+   "name": "HD texture pack (2x, smaller)",
+   "group": "Graphics",
+   "default": false,
+   "excludes": [
+    "hd-4x"
+   ],
+   "description": "The same pack at twice the original resolution: a quarter of the size, nearly all of the look at 1080p. Pick this one if disk space or download time matters.",
+   "paths": [
+    "textures/hd/.pack-2x"
+   ],
+   "remove": [
+    "textures/hd"
+   ],
+   "on_install": {
+    "tex_replace": 1
+   },
+   "previews": [
+    {
+     "file": "hd_before.png",
+     "after": "hd_after.png",
+     "caption": "Original textures (left) and the HD pack (right)",
+     "url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/preview-hd_before.png",
+     "after_url": "https://github.com/alexsharkey32-cyber/mvp2005-recomp-releases/releases/download/features/preview-hd_after.png"
+    }
+   ],
+   "version": "1",
+   "install_size": 4060334152,
+   "files": 306620,
+   "parts": [
+    {
+     "file": "hd-2x.part1.tar",
+     "size": 1808711680,
+     "sha256": "6b9ef571a0c4ff80cd7fa913ba242dd220292283af01502cd26e1b36bafd25a3",
+     "files": 118692
+    },
+    {
+     "file": "hd-2x.part2.tar",
+     "size": 1802782720,
+     "sha256": "477ed6c9360bdd41095fb1fb13734cf6c79f3e2b430e319f8faa8381474576ee",
+     "files": 126418
+    },
+    {
+     "file": "hd-2x.part3.tar",
+     "size": 684052480,
+     "sha256": "b323426464939f3da9b3d49be5f095b3ba0972787ab42456f52ff6364e3f0589",
+     "files": 61510
+    }
+   ]
+  }
+ ]
+}
