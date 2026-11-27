@@ -1,0 +1,31 @@
+# Fetches the official headshots of the modern rosters' players (ids.txt) for the private roster tools.
+# Encrypted with MVP_SRC_KEY and kept in a draft release (not public).
+name: headshots
+on:
+  push:
+    branches: [headshots-fetch]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env: { GH_TOKEN: '${{ github.token }}' }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        run: |
+          mkdir -p h/96 h/213
+          fetch() { id=$1
+            curl -sfL --retry 3 -o h/96/$id.jpg  "https://img.mlbstatic.com/mlb-photos/image/upload/w_96,q_auto:best/v1/people/$id/headshot/67/current" || rm -f h/96/$id.jpg
+            curl -sfL --retry 3 -o h/213/$id.jpg "https://img.mlbstatic.com/mlb-photos/image/upload/w_213,q_auto:best/v1/people/$id/headshot/67/current" || rm -f h/213/$id.jpg; }
+          export -f fetch
+          xargs -P 16 -n 1 bash -c 'fetch "$0"' < ids.txt
+          ls h/96 | wc -l; ls h/213 | wc -l; du -sh h
+      - name: Encrypt and keep in the private draft
+        env: { KEY: '${{ secrets.MVP_SRC_KEY }}' }
+        run: |
+          tar cf - h | openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -pass env:KEY -out headshots.tar.enc
+          tag=work-data
+          gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create "$tag" --repo "$GITHUB_REPOSITORY" --draft --title "work data" --notes "Private working data."
+          gh release upload "$tag" headshots.tar.enc --repo "$GITHUB_REPOSITORY" --clobber
