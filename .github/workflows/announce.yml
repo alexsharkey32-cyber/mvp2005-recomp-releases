@@ -10,4 +10,5 @@ jobs:
     env: { GH_TOKEN: '${{ github.token }}' }
     steps:
       - uses: actions/checkout@v4
-      - run: gh release edit v1.6.2 --repo "$GITHUB_REPOSITORY" --title "MVP Baseball 2005 Recomp v1.6.2: rosters apply right away, new player faces" --notes-file notes.md
+      - run: |
+          gh release edit v1.6.2 --repo "$GITHUB_REPOSITORY" --title "MVP Baseball 2005 Recomp v1.6.2: rosters apply right away, new player faces" --notes-file notes.md
